@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <div class="card-header card-header-tabs card-header-primary">
+        <div class="nav-tabs-navigation">
+          <div class="nav-tabs-wrapper">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                  <i class="material-icons">add_circle_outline</i> Agregar
+                  <div class="ripple-container"></div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form role="form" class="form" method="POST" action="">
+            {% csrf_token %}
+            {% for cliente in data_cliente %}
+            <label>Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="{{ cliente.nombre }}">
+            <label>Apellido</label>
+            <input type="text" name="apellido" class="form-control" value="{{ cliente.apellido }}">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" value="{{ cliente.email }}">
+            <label>Telefono</label>
+            <input type="text" name="telefono" class="form-control" value="{{ cliente.telefono }}">
+            {% endfor %}
+            <br>
+            <input type="submit" value="Agregar" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
